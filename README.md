@@ -3,7 +3,7 @@
 A complete Shopify Ajax cart solution written in vanilla JS. This plugin includes Ajax cart drawer,  Ajax mini cart, add to cart modal, and error modal.  
 Plugin by [Bornfight](https://www.bornfight.com/) front-end team.
   
-## Features
+## :muscle: Features
 
 - Cart drawer (with left or right direction)
 - Mini cart (cart flying under cart button)
@@ -14,7 +14,7 @@ Plugin by [Bornfight](https://www.bornfight.com/) front-end team.
 - Written in vanilla JS (no Jquery needed) 
 - Barebones (only minimal styles are included) 
 
-## Getting Started  
+## :hammer: Getting Started  
   
 Compiled code can be found in the `build` directory. The `src` directory contains development code.  
   
@@ -132,7 +132,7 @@ There is no need to have two cart buttons so you can completely remove your old 
 const ajaxCart = new CompleteAjaxCart();
 ```
   
-## Options
+## :airplane: Options
 ```
 {
     cartMode: 'drawer', //drawer or mini-cart  
@@ -140,10 +140,10 @@ const ajaxCart = new CompleteAjaxCart();
     displayModal: false, //display success modal when adding product to cart
 }
 ```
-## Browser Compatibility  
+## :globe_with_meridians: Browser Compatibility  
   
 goCart.js works in all modern browsers, IE11 and above is supported.  
   
-## License
+## :white_check_mark: License
 
 MIT License
