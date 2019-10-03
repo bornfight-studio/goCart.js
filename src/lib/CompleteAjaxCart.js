@@ -71,11 +71,15 @@ class CompleteAjaxCart {
 
     }
 
+    get isDrawerMode() {
+        return this.cartMode === 'drawer';
+    }
+
     init() {
 
         this.fetchCart();
 
-        if (this.cartMode === 'drawer') {
+        if (this.isDrawerMode) {
             this.setDrawerDirection();
         }
 
@@ -88,7 +92,7 @@ class CompleteAjaxCart {
         });
 
         this.cartTrigger.addEventListener('click', () => {
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.openCartDrawer();
             } else {
                 this.openMiniCart();
@@ -99,7 +103,7 @@ class CompleteAjaxCart {
         this.cartOverlay.addEventListener('click', () => {
             this.closeFailModal();
             this.closeCartModal();
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.closeCartDrawer();
             } else {
                 this.closeMiniCart();
@@ -107,7 +111,7 @@ class CompleteAjaxCart {
             this.closeCartOverlay();
         });
 
-        if (this.cartMode === 'drawer') {
+        if (this.isDrawerMode) {
             this.cartDrawerClose.addEventListener('click', () => {
                 this.closeCartDrawer();
                 this.closeCartOverlay();
@@ -119,7 +123,7 @@ class CompleteAjaxCart {
                 item.addEventListener('click', () => {
                     this.closeFailModal();
                     this.closeCartModal();
-                    if (this.cartMode === 'drawer') {
+                    if (this.isDrawerMode) {
                         this.closeCartDrawer();
                     } else {
                         this.closeMiniCart();
@@ -132,7 +136,7 @@ class CompleteAjaxCart {
         this.cartModalFailClose.addEventListener('click', () => {
             this.closeFailModal();
             this.closeCartModal();
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.closeCartDrawer();
             } else {
                 this.closeMiniCart();
@@ -215,7 +219,7 @@ class CompleteAjaxCart {
 
     fetchAndOpenCart() {
         this.fetchCart(() => {
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.openCartDrawer();
             } else {
                 this.openMiniCart();
@@ -234,7 +238,7 @@ class CompleteAjaxCart {
 
     fetchHandler(cart, callback) {
         this.cartItemCount(cart);
-        if (this.cartMode === 'drawer') {
+        if (this.isDrawerMode) {
             if (cart.item_count === 0) {
                 this.renderBlankCartDrawer();
                 this.cartDrawerFooter.classList.add('is-invisible');
