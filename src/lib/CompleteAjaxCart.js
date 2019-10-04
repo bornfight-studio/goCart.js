@@ -1,5 +1,5 @@
 import './scss/CompleteAjaxCart.scss';
-import {formatMoney} from '@shopify/theme-currency/currency';
+import * as currency from '@shopify/theme-currency';
 import 'whatwg-fetch';
 import serialize from 'form-serialize';
 
@@ -147,17 +147,17 @@ class CompleteAjaxCart {
             credentials: 'same-origin',
             method: 'GET',
         })
-            .then((response) => response.json())
-            .then((cart) => this.fetchHandler(cart, callback))
-            .catch((error) => {
-                this.ajaxRequestFail();
-                throw new Error(error);
-            });
+          .then((response) => response.json())
+          .then((cart) => this.fetchHandler(cart, callback))
+          .catch((error) => {
+              this.ajaxRequestFail();
+              throw new Error(error);
+          });
     }
 
     addItemToCart(formID) {
         const form = document.querySelector(`#${formID}`);
-        const formData = serialize(form, {hash: true});
+        const formData = serialize(form, { hash: true });
         window.fetch('/cart/add.js', {
             method: 'POST',
             credentials: 'include',
@@ -166,12 +166,12 @@ class CompleteAjaxCart {
             },
             body: JSON.stringify(formData),
         })
-            .then((response) => response.json())
-            .then((product) => this.addItemToCartHandler(product))
-            .catch((error) => {
-                this.ajaxRequestFail();
-                throw new Error(error);
-            });
+          .then((response) => response.json())
+          .then((product) => this.addItemToCartHandler(product))
+          .catch((error) => {
+              this.ajaxRequestFail();
+              throw new Error(error);
+          });
     }
 
     removeItem(line) {
@@ -179,34 +179,34 @@ class CompleteAjaxCart {
         window.fetch('/cart/change.js', {
             method: 'POST',
             credentials: 'same-origin',
-            body: JSON.stringify({quantity, line}),
+            body: JSON.stringify({ quantity, line }),
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => response.json())
-            .then(() => this.fetchCart())
-            .catch((error) => {
-                this.ajaxRequestFail();
-                throw new Error(error);
-            });
+          .then((response) => response.json())
+          .then(() => this.fetchCart())
+          .catch((error) => {
+              this.ajaxRequestFail();
+              throw new Error(error);
+          });
     }
 
     changeItemQuantity(line, quantity) {
         window.fetch('/cart/change.js', {
             method: 'POST',
             credentials: 'same-origin',
-            body: JSON.stringify({quantity, line}),
+            body: JSON.stringify({ quantity, line }),
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => response.json())
-            .then(() => this.fetchCart())
-            .catch((error) => {
-                this.ajaxRequestFail();
-                throw new Error(error);
-            });
+          .then((response) => response.json())
+          .then(() => this.fetchCart())
+          .catch((error) => {
+              this.ajaxRequestFail();
+              throw new Error(error);
+          });
     }
 
     cartItemCount(cart) {
@@ -307,13 +307,13 @@ class CompleteAjaxCart {
                     </div>
                 </div>
             </div>
-            <div class="ajax-cart-item__price">${formatMoney(item.line_price)}</div>
+            <div class="ajax-cart-item__price">${currency.formatMoney(item.line_price)}</div>
             <a class="ajax-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
         </div>
       `;
             this.cartDrawerContent.innerHTML += cartSingleProduct;
         });
-        this.cartDrawerSubTotal.innerHTML = formatMoney(cart.total_price);
+        this.cartDrawerSubTotal.innerHTML = currency.formatMoney(cart.total_price);
         this.cartDrawerSubTotal.parentNode.classList.remove('is-invisible');
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {
@@ -366,13 +366,13 @@ class CompleteAjaxCart {
                     </div>
                 </div>
             </div>
-            <div class="ajax-cart-item__price">${formatMoney(item.line_price)}</div>
+            <div class="ajax-cart-item__price">${currency.formatMoney(item.line_price)}</div>
             <a class="ajax-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
         </div>
       `;
             this.cartMiniCartContent.innerHTML += cartSingleProduct;
         });
-        this.cartMiniCartSubTotal.innerHTML = formatMoney(cart.total_price);
+        this.cartMiniCartSubTotal.innerHTML = currency.formatMoney(cart.total_price);
         this.cartMiniCartSubTotal.parentNode.classList.remove('is-invisible');
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {
@@ -472,6 +472,9 @@ class CompleteAjaxCart {
     }
 
     setDrawerDirection() {
+        if (this.cartDrawer == null) {
+            throw new Error('Cart drawer element does not exist');
+        }
         this.cartDrawer.classList.add(`ajax-cart__drawer--${this.drawerDirection}`);
     }
 
