@@ -1,3 +1,3 @@
-import CompleteAjaxCart from './CompleteAjaxCart';
+import GoCart from './GoCart';
 
-export default CompleteAjaxCart;
+export default GoCart;
