@@ -1,4 +1,4 @@
-import './scss/go-cart.scss';
+import '../scss/go-cart.scss';
 import {formatMoney} from '@shopify/theme-currency/currency';
 import 'whatwg-fetch';
 import serialize from 'form-serialize';
