@@ -1,7 +1,7 @@
 {
-  "name": "complete-shopify-ajax-cart",
+  "name": "gocart.js",
   "version": "1.0.0",
-  "description": "Complete Shopify ajax cart from Bornfight",
+  "description": "goCart.js - Complete Shopify Ajax cart from Bornfight",
   "main": "build/index.js",
   "scripts": {
     "start": "node scripts/start.js",

@@ -21,30 +21,30 @@ Compiled code can be found in the `build` directory. The `src` directory contain
 ### 1. Install plugin  
   
 ```
-npm install goCart.js
+npm install gocart.js
 ``` 
 
 ### 2. Import goCart.js to your theme JS
 
 ```
-import CompleteAjaxCart from 'complete-shopify-ajax-cart';
+import GoCart from 'gocart.js';
 ```
   
 ### 3. Import CSS/SCSS styles  
   
 Take the CSS file from `build` folder and include it in your Shopify theme.   
 
-If you are using SCSS you can find the SCSS file inside `src` folder: `src/lib/scss/CompleteAjaxCart.scss`.   
+If you are using SCSS you can find the SCSS file inside `src` folder: `src/lib/scss/go-cart.scss`.   
   
 You can also simply include it from `node_modules` like this:   
   
 ```
-@import "~complete-shopify-ajax-cart/src/lib/scss/CompleteAjaxCart";
+@import "~gocart.js/src/lib/scss/go-cart";
 ```  
   
-### 4. Include `ajax-cart.liquid` file as section  
+### 4. Include `go-cart.liquid` file as section  
   
-Take the `ajax-cart.liquid` file from `src/lib/` and put it in `sections` folder of your Shopify theme.  
+Take the `go-cart.liquid` file from `src/lib/` and put it in `sections` folder of your Shopify theme.  
 
 This file contains all elements that make goCart.js   
 
@@ -52,7 +52,7 @@ To make goCart.js elements visible (drawer, modals) you need to include it in yo
   
 To do so insert this code: 
 ```
-{%- section 'ajax-cart' -%}
+{%- section 'go-cart' -%}
 ``` 
 inside `theme.liquid` file, best right before closing of `</body>` tag.  
   
@@ -70,7 +70,7 @@ You will need to add identifier to that form which goCart.js uses to add product
   
 ```  
 <form action="/cart/add" method="post" enctype="multipart/form-data"  
- id="add-to-cart-{{ product.handle }}-{{ collection.handle }}-{{ section.id }}">
+  id="add-to-cart-{{ product.handle }}-{{ collection.handle }}-{{ section.id }}">
  ```  
   
 Inside that same form, find 'Add to cart' button, which user presses when he wants to add product to cart.   
@@ -100,7 +100,7 @@ You will need to add class to that button that goCart.js uses to prevent standar
  type="submit" 
  name="add" 
  data-add-to-cart 
- class="js-ajax-add-to-cart" 
+ class="js-go-cart-add-to-cart"
  {%- unless current_variant.available -%}disabled="disabled"{%- endunless -%}> 
 	 <span data-add-to-cart-text> 
 	    {%- if current_variant.available -%} 
@@ -114,7 +114,7 @@ You will need to add class to that button that goCart.js uses to prevent standar
   
 ### 6. Replace your cart button with goCart button
 
-Take the `ajax-cart-button.liquid` file from `src/lib/` and put it in `snippets` folder of your Shopify theme.  
+Take the `go-cart-button.liquid` file from `src/lib/` and put it in `snippets` folder of your Shopify theme.  
 
 This file contains goCart elements that make cart button with number of items inside cart.
   
@@ -122,14 +122,14 @@ Locate the file that contains your cart button. Usually this will be inside `hea
 
 Inside your file just include goCart button as a snippet instead your old cart button like this: 
 
-`{% include "ajax-cart-button" %}` 
+`{% include "go-cart-button" %}` 
 
 There is no need to have two cart buttons so you can completely remove your old cart button.
   
 ### 7. Init the plugin  
 
 ```
-const ajaxCart = new CompleteAjaxCart();
+const goCart = new GoCart();
 ```
   
 ## :airplane: Options
@@ -140,6 +140,25 @@ const ajaxCart = new CompleteAjaxCart();
     displayModal: false, //display success modal when adding product to cart
 }
 ```
+
+## :question: Drawer and mini cart modes
+
+goCart.js has two cart modes - drawer and mini cart. Drawer is mode where cart comes from left or right outside of the visible viewport. Mini cart mode flies under the cart button (cart icon) in header. Both are very popular these days and you can change the cart layout with goCart.js within seconds. If you are using Drawer mode and you are keen on performance, you can even remove the mini cart liquid code from `go-cart-button.liquid`. Liquid code for the mini cart mode is between the mini cart commented code inside that file: 
+
+```
+<!--go cart mini cart-->
+...
+<!--end go cart mini cart-->
+```
+
+Or if you are using only mini cart and you are keen on performance you can remove the cart drawer liquid code from `go-cart.liquid`. Liquid code for the cart drawer mode is between the cart drawer commented code inside that file: 
+
+```
+<!--go cart drawer-->
+...
+<!--end go cart drawer-->
+```
+
 ## :globe_with_meridians: Browser Compatibility  
   
 goCart.js works in all modern browsers, IE11 and above is supported.  

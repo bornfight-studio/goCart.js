@@ -200,7 +200,7 @@ module.exports = function(webpackEnv) {
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
-      library: "CompleteShopifyAjaxCart",
+      library: "goCart.js",
       libraryTarget: 'umd',
       umdNamedDefine: true,
       // Point sourcemap entries to original disk location (format as URL on Windows)

@@ -1,23 +1,23 @@
-$ajax-modal-width: 420px;
-$ajax-modal-height: 220px;
-$ajax-modal-bg: #ffffff;
-$ajax-drawer-width: 480px;
-$ajax-drawer-header-height: 60px;
-$ajax-drawer-footer-height: 170px;
-$ajax-drawer-subtotal-height: 50px;
-$ajax-drawer-bg: #ffffff;
-$ajax-mini-cart-width: 480px;
-$ajax-mini-cart-height: 480px;
-$ajax-mini-cart-footer-height: 100px;
-$ajax-mini-cart-subtotal-height: 50px;
-$ajax-mini-cart-bg: #ffffff;
-$ajax-cart-overlay-bg: rgba(0, 0, 0, 0.4);
-$ajax-cart-transition: all .3s ease-in-out;
-$ajax-cart-item-border: #f5f5f5;
-$ajax-cart-quantity-number-color: #000000;
-$ajax-cart-quantity-button-border: #f5f5f5;
+$go-cart-modal-width: 420px;
+$go-cart-modal-height: 220px;
+$go-cart-modal-bg: #ffffff;
+$go-cart-drawer-width: 480px;
+$go-cart-drawer-header-height: 60px;
+$go-cart-drawer-footer-height: 170px;
+$go-cart-drawer-subtotal-height: 50px;
+$go-cart-drawer-bg: #ffffff;
+$go-cart-mini-cart-width: 480px;
+$go-cart-mini-cart-height: 480px;
+$go-cart-mini-cart-footer-height: 100px;
+$go-cart-mini-cart-subtotal-height: 50px;
+$go-cart-mini-cart-bg: #ffffff;
+$go-cart-overlay-bg: rgba(0, 0, 0, 0.4);
+$go-cart-transition: all .3s ease-in-out;
+$go-cart-item-border: #f5f5f5;
+$go-cart-quantity-number-color: #000000;
+$go-cart-quantity-button-border: #f5f5f5;
 
-.ajax-cart {
+.go-cart {
 
     &__modal {
         position: fixed;
@@ -28,13 +28,12 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         display: flex;
         align-items: center;
         width: 100%;
-        max-width: $ajax-modal-width;
-        height: $ajax-modal-height;
-        background-color: $ajax-modal-bg;
-        transition: $ajax-cart-transition;
+        max-width: $go-cart-modal-width;
+        height: $go-cart-modal-height;
+        background-color: $go-cart-modal-bg;
+        transition: $go-cart-transition;
         opacity: 0;
         visibility: hidden;
-        will-change: opacity, visibility;
         backface-visibility: hidden;
 
         &.is-open {
@@ -51,11 +50,10 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         left: 0;
         right: 0;
         z-index: 30;
-        background-color: $ajax-cart-overlay-bg;
-        transition: $ajax-cart-transition;
+        background-color: $go-cart-overlay-bg;
+        transition: $go-cart-transition;
         opacity: 0;
         visibility: hidden;
-        will-change: opacity, visibility;
         backface-visibility: hidden;
 
         &.is-open {
@@ -68,26 +66,25 @@ $ajax-cart-quantity-button-border: #f5f5f5;
     &__drawer {
         position: fixed;
         top: 0;
-        right: -#{$ajax-drawer-width};
+        right: -#{$go-cart-drawer-width};
         z-index: 40;
         width: 100%;
-        max-width: $ajax-drawer-width;
+        max-width: $go-cart-drawer-width;
         height: 100%;
-        background-color: $ajax-drawer-bg;
-        transition: $ajax-cart-transition;
-        will-change: transform;
+        background-color: $go-cart-drawer-bg;
+        transition: $go-cart-transition;
         backface-visibility: hidden;
 
         &.is-open {
-            transform: translateX(-#{$ajax-drawer-width});
+            transform: translateX(-#{$go-cart-drawer-width});
         }
 
         &--left {
             right: auto;
-            left: -#{$ajax-drawer-width};
+            left: -#{$go-cart-drawer-width};
 
             &.is-open {
-                transform: translateX($ajax-drawer-width);
+                transform: translateX($go-cart-drawer-width);
             }
 
         }
@@ -99,13 +96,12 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         top: 100%;
         left: 0;
         z-index: 40;
-        width: $ajax-mini-cart-width;
-        height: $ajax-mini-cart-height;
-        background-color: $ajax-mini-cart-bg;
+        width: $go-cart-mini-cart-width;
+        height: $go-cart-mini-cart-height;
+        background-color: $go-cart-mini-cart-bg;
         transition: all .3s ease-in-out;
         opacity: 0;
         visibility: hidden;
-        will-change: opacity, visibility;
         cursor: auto;
         backface-visibility: hidden;
 
@@ -136,7 +132,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
 
 }
 
-.ajax-cart-modal {
+.go-cart-modal {
     position: relative;
     width: 100%;
     height: 100%;
@@ -170,13 +166,13 @@ $ajax-cart-quantity-button-border: #f5f5f5;
 
 }
 
-.ajax-cart-drawer {
+.go-cart-drawer {
     position: relative;
     height: 100%;
 
     &__header {
         width: 100%;
-        height: $ajax-drawer-header-height;
+        height: $go-cart-drawer-header-height;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -189,7 +185,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
     }
 
     &__content {
-        height: calc(100% - #{$ajax-drawer-footer-height} - #{$ajax-drawer-header-height} - #{$ajax-drawer-subtotal-height});
+        height: calc(100% - #{$go-cart-drawer-footer-height} - #{$go-cart-drawer-header-height} - #{$go-cart-drawer-subtotal-height});
         overflow: hidden;
         overflow-y: scroll;
         padding: 0 30px;
@@ -200,9 +196,9 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        height: $ajax-drawer-subtotal-height;
+        height: $go-cart-drawer-subtotal-height;
         padding: 0 30px;
-        transition: $ajax-cart-transition;
+        transition: $go-cart-transition;
     }
 
     &__footer {
@@ -210,19 +206,19 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        height: $ajax-drawer-footer-height;
+        height: $go-cart-drawer-footer-height;
         padding: 20px 30px;
-        transition: $ajax-cart-transition;
+        transition: $go-cart-transition;
     }
 
 }
 
-.ajax-mini-cart {
+.go-cart-mini-cart {
     position: relative;
 
     &__content {
         position: relative;
-        height: calc(#{$ajax-mini-cart-height} - #{$ajax-mini-cart-footer-height} - #{$ajax-mini-cart-subtotal-height});
+        height: calc(#{$go-cart-mini-cart-height} - #{$go-cart-mini-cart-footer-height} - #{$go-cart-mini-cart-subtotal-height});
         overflow: hidden;
         overflow-y: scroll;
         padding: 0 30px;
@@ -233,30 +229,30 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        height: $ajax-mini-cart-subtotal-height;
+        height: $go-cart-mini-cart-subtotal-height;
         padding: 0 30px;
-        transition: $ajax-cart-transition;
+        transition: $go-cart-transition;
     }
 
     &__footer {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        height: $ajax-mini-cart-footer-height;
+        height: $go-cart-mini-cart-footer-height;
         text-align: center;
         padding: 20px 30px;
-        transition: $ajax-cart-transition;
+        transition: $go-cart-transition;
     }
 
 }
 
-.ajax-cart-item {
+.go-cart-item {
 
     &__single {
         position: relative;
-        transition: $ajax-cart-transition;
+        transition: $go-cart-transition;
         padding: 15px 0;
-        border-bottom: 1px solid $ajax-cart-item-border;
+        border-bottom: 1px solid $go-cart-item-border;
     }
 
     &__info-wrapper {
@@ -273,7 +269,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
     &__image {
         width: 90px;
         height: 110px;
-        background-size: contain;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
@@ -304,7 +300,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         margin: 0;
         text-align: center;
         font-size: 1rem;
-        color: $ajax-cart-quantity-number-color;
+        color: $go-cart-quantity-number-color;
         border: none;
         outline: none;
         -moz-appearance: textfield;
@@ -326,7 +322,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid $ajax-cart-quantity-button-border;
+        border: 1px solid $go-cart-quantity-button-border;
         font-size: 1rem;
         padding: 0 5px;
         margin: 0 2px;
@@ -350,7 +346,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
 }
 
 
-.ajax-cart-modal-item {
+.go-cart-modal-item {
     position: relative;
     display: flex;
 
@@ -363,7 +359,7 @@ $ajax-cart-quantity-button-border: #f5f5f5;
     &__image {
         width: 90px;
         height: 110px;
-        background-size: contain;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }

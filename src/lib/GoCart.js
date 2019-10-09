@@ -1,37 +1,36 @@
-import './scss/CompleteAjaxCart.scss';
+import './scss/go-cart.scss';
 import {formatMoney} from '@shopify/theme-currency/currency';
 import 'whatwg-fetch';
 import serialize from 'form-serialize';
 
-class CompleteAjaxCart {
+class GoCart {
 
     constructor(options) {
 
         const defaults = {
-            cartModalFail: '.js-ajax-cart-modal-fail',
-            cartModalFailClose: '.js-ajax-cart-modal-fail-close',
-            cartModal: '.js-ajax-cart-modal',
-            cartModalClose: '.js-ajax-cart-modal-close',
-            cartModalContent: '.js-ajax-cart-modal-content',
-            cartDrawer: '.js-ajax-cart-drawer',
-            cartDrawerContent: '.js-ajax-cart-drawer-content',
-            cartDrawerSubTotal: '.js-ajax-cart-drawer-subtotal',
-            cartDrawerFooter: '.js-ajax-drawer-footer',
-            cartDrawerClose: '.js-ajax-cart-drawer-close',
-            cartMiniCart: '.js-ajax-mini-cart',
-            cartMiniCartContent: '.js-ajax-mini-cart-content',
-            cartMiniCartSubTotal: '.js-ajax-mini-cart-subtotal',
-            cartMiniCartFooter: '.js-ajax-mini-cart-footer',
-            cartTrigger: '.js-ajax-cart-trigger',
-            cartOverlay: '.js-ajax-cart-overlay',
-            cartCount: '.js-ajax-cart-counter',
-            addToCart: '.js-ajax-add-to-cart',
-            removeFromCart: '.js-ajax-remove-from-cart',
-            removeFromCartNoDot: 'js-ajax-remove-from-cart',
-            itemQuantity: '.js-ajax-cart-quantity',
-            itemQuantityPlus: '.js-ajax-cart-quantity-plus',
-            itemQuantityMinus: '.js-ajax-cart-quantity-minus',
-            bodyClass: 'is-overlay-opened',
+            cartModalFail: '.js-go-cart-modal-fail',
+            cartModalFailClose: '.js-go-cart-modal-fail-close',
+            cartModal: '.js-go-cart-modal',
+            cartModalClose: '.js-go-cart-modal-close',
+            cartModalContent: '.js-go-cart-modal-content',
+            cartDrawer: '.js-go-cart-drawer',
+            cartDrawerContent: '.js-go-cart-drawer-content',
+            cartDrawerSubTotal: '.js-go-cart-drawer-subtotal',
+            cartDrawerFooter: '.js-go-cart-drawer-footer',
+            cartDrawerClose: '.js-go-cart-drawer-close',
+            cartMiniCart: '.js-go-cart-mini-cart',
+            cartMiniCartContent: '.js-go-cart-mini-cart-content',
+            cartMiniCartSubTotal: '.js-go-cart-mini-cart-subtotal',
+            cartMiniCartFooter: '.js-go-cart-mini-cart-footer',
+            cartTrigger: '.js-go-cart-trigger',
+            cartOverlay: '.js-go-cart-overlay',
+            cartCount: '.js-go-cart-counter',
+            addToCart: '.js-go-cart-add-to-cart',
+            removeFromCart: '.js-go-cart-remove-from-cart',
+            removeFromCartNoDot: 'js-go-cart-remove-from-cart',
+            itemQuantity: '.js-go-cart-quantity',
+            itemQuantityPlus: '.js-go-cart-quantity-plus',
+            itemQuantityMinus: '.js-go-cart-quantity-minus',
             cartMode: 'drawer',
             drawerDirection: 'right',
             displayModal: false,
@@ -62,7 +61,6 @@ class CompleteAjaxCart {
         this.itemQuantity = this.defaults.itemQuantity;
         this.itemQuantityPlus = this.defaults.itemQuantityPlus;
         this.itemQuantityMinus = this.defaults.itemQuantityMinus;
-        this.bodyClass = this.defaults.bodyClass;
         this.cartMode = this.defaults.cartMode;
         this.drawerDirection = this.defaults.drawerDirection;
         this.displayModal = this.defaults.displayModal;
@@ -71,11 +69,15 @@ class CompleteAjaxCart {
 
     }
 
+    get isDrawerMode() {
+        return this.cartMode === 'drawer';
+    }
+
     init() {
 
         this.fetchCart();
 
-        if (this.cartMode === 'drawer') {
+        if (this.isDrawerMode) {
             this.setDrawerDirection();
         }
 
@@ -88,7 +90,7 @@ class CompleteAjaxCart {
         });
 
         this.cartTrigger.addEventListener('click', () => {
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.openCartDrawer();
             } else {
                 this.openMiniCart();
@@ -99,7 +101,7 @@ class CompleteAjaxCart {
         this.cartOverlay.addEventListener('click', () => {
             this.closeFailModal();
             this.closeCartModal();
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.closeCartDrawer();
             } else {
                 this.closeMiniCart();
@@ -107,7 +109,7 @@ class CompleteAjaxCart {
             this.closeCartOverlay();
         });
 
-        if (this.cartMode === 'drawer') {
+        if (this.isDrawerMode) {
             this.cartDrawerClose.addEventListener('click', () => {
                 this.closeCartDrawer();
                 this.closeCartOverlay();
@@ -119,7 +121,7 @@ class CompleteAjaxCart {
                 item.addEventListener('click', () => {
                     this.closeFailModal();
                     this.closeCartModal();
-                    if (this.cartMode === 'drawer') {
+                    if (this.isDrawerMode) {
                         this.closeCartDrawer();
                     } else {
                         this.closeMiniCart();
@@ -132,7 +134,7 @@ class CompleteAjaxCart {
         this.cartModalFailClose.addEventListener('click', () => {
             this.closeFailModal();
             this.closeCartModal();
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.closeCartDrawer();
             } else {
                 this.closeMiniCart();
@@ -215,7 +217,7 @@ class CompleteAjaxCart {
 
     fetchAndOpenCart() {
         this.fetchCart(() => {
-            if (this.cartMode === 'drawer') {
+            if (this.isDrawerMode) {
                 this.openCartDrawer();
             } else {
                 this.openMiniCart();
@@ -234,7 +236,7 @@ class CompleteAjaxCart {
 
     fetchHandler(cart, callback) {
         this.cartItemCount(cart);
-        if (this.cartMode === 'drawer') {
+        if (this.isDrawerMode) {
             if (cart.item_count === 0) {
                 this.renderBlankCartDrawer();
                 this.cartDrawerFooter.classList.add('is-invisible');
@@ -275,10 +277,10 @@ class CompleteAjaxCart {
             productVariant = `(${productVariant})`;
         }
         const cartSingleProduct = `
-        <div class="ajax-cart-modal-item">
-            <div class="ajax-cart-item__image" style="background-image: url(${product.image});"></div>
-            <div class="ajax-cart-item__info">
-                <a href="${product.url}" class="ajax-cart-item__title">${product.product_title} ${productVariant}</a> was added to your cart.
+        <div class="go-cart-modal-item">
+            <div class="go-cart-item__image" style="background-image: url(${product.image});"></div>
+            <div class="go-cart-item__info">
+                <a href="${product.url}" class="go-cart-item__title">${product.product_title} ${productVariant}</a> was added to your cart.
             </div>
         </div>
       `;
@@ -293,22 +295,22 @@ class CompleteAjaxCart {
                 itemVariant = '';
             }
             const cartSingleProduct = `
-        <div class="ajax-cart-item__single" data-line="${Number(index + 1)}">
-            <div class="ajax-cart-item__info-wrapper">
-                <div class="ajax-cart-item__image" style="background-image: url(${item.image});"></div>
-                <div class="ajax-cart-item__info">
-                    <a href="${item.url}" class="ajax-cart-item__title">${item.product_title}</a>
-                    <div class="ajax-cart-item__variant">${itemVariant}</div>
-                    <div class="ajax-cart-item__quantity">
-                        <span class="ajax-cart-item__quantity-label">Quantity: </span>
-                        <span class="ajax-cart-item__quantity-button js-ajax-cart-quantity-minus">-</span>
-                        <input class="ajax-cart-item__quantity-number js-ajax-cart-quantity" type="number" value="${item.quantity}" disabled>
-                        <span class="ajax-cart-item__quantity-button js-ajax-cart-quantity-plus">+</span>
+        <div class="go-cart-item__single" data-line="${Number(index + 1)}">
+            <div class="go-cart-item__info-wrapper">
+                <div class="go-cart-item__image" style="background-image: url(${item.image});"></div>
+                <div class="go-cart-item__info">
+                    <a href="${item.url}" class="go-cart-item__title">${item.product_title}</a>
+                    <div class="go-cart-item__variant">${itemVariant}</div>
+                    <div class="go-cart-item__quantity">
+                        <span class="go-cart-item__quantity-label">Quantity: </span>
+                        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
+                        <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="${item.quantity}" disabled>
+                        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
                     </div>
                 </div>
             </div>
-            <div class="ajax-cart-item__price">${formatMoney(item.line_price)}</div>
-            <a class="ajax-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
+            <div class="go-cart-item__price">${formatMoney(item.line_price)}</div>
+            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
         </div>
       `;
             this.cartDrawerContent.innerHTML += cartSingleProduct;
@@ -318,7 +320,7 @@ class CompleteAjaxCart {
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {
             item.addEventListener('click', () => {
-                CompleteAjaxCart.removeItemAnimation(item.parentNode);
+                GoCart.removeItemAnimation(item.parentNode);
                 const line = item.parentNode.getAttribute('data-line');
                 this.removeItem(line);
             });
@@ -338,7 +340,7 @@ class CompleteAjaxCart {
                 const quantity = Number(item.parentNode.querySelector(this.itemQuantity).value) - 1;
                 this.changeItemQuantity(line, quantity);
                 if (Number((item.parentNode.querySelector(this.itemQuantity).value - 1)) === 0) {
-                    CompleteAjaxCart.removeItemAnimation(item.parentNode.parentNode.parentNode.parentNode);
+                    GoCart.removeItemAnimation(item.parentNode.parentNode.parentNode.parentNode);
                 }
             });
         });
@@ -352,22 +354,22 @@ class CompleteAjaxCart {
                 itemVariant = '';
             }
             const cartSingleProduct = `
-        <div class="ajax-cart-item__single" data-line="${Number(index + 1)}">
-            <div class="ajax-cart-item__info-wrapper">
-                <div class="ajax-cart-item__image" style="background-image: url(${item.image});"></div>
-                <div class="ajax-cart-item__info">
-                    <a href="${item.url}" class="ajax-cart-item__title">${item.product_title}</a>
-                    <div class="ajax-cart-item__variant">${itemVariant}</div>
-                    <div class="ajax-cart-item__quantity">
-                        <span class="ajax-cart-item__quantity-label">Quantity: </span>
-                        <span class="ajax-cart-item__quantity-button js-ajax-cart-quantity-minus">-</span>
-                        <input class="ajax-cart-item__quantity-number js-ajax-cart-quantity" type="number" value="${item.quantity}" disabled>
-                        <span class="ajax-cart-item__quantity-button js-ajax-cart-quantity-plus">+</span>
+        <div class="go-cart-item__single" data-line="${Number(index + 1)}">
+            <div class="go-cart-item__info-wrapper">
+                <div class="go-cart-item__image" style="background-image: url(${item.image});"></div>
+                <div class="go-cart-item__info">
+                    <a href="${item.url}" class="go-cart-item__title">${item.product_title}</a>
+                    <div class="go-cart-item__variant">${itemVariant}</div>
+                    <div class="go-cart-item__quantity">
+                        <span class="go-cart-item__quantity-label">Quantity: </span>
+                        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
+                        <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="${item.quantity}" disabled>
+                        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
                     </div>
                 </div>
             </div>
-            <div class="ajax-cart-item__price">${formatMoney(item.line_price)}</div>
-            <a class="ajax-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
+            <div class="go-cart-item__price">${formatMoney(item.line_price)}</div>
+            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
         </div>
       `;
             this.cartMiniCartContent.innerHTML += cartSingleProduct;
@@ -377,7 +379,7 @@ class CompleteAjaxCart {
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {
             item.addEventListener('click', () => {
-                CompleteAjaxCart.removeItemAnimation(item.parentNode);
+                GoCart.removeItemAnimation(item.parentNode);
                 const line = item.parentNode.getAttribute('data-line');
                 this.removeItem(line);
             });
@@ -397,7 +399,7 @@ class CompleteAjaxCart {
                 const quantity = Number(item.parentNode.querySelector(this.itemQuantity).value) - 1;
                 this.changeItemQuantity(line, quantity);
                 if (Number((item.parentNode.querySelector(this.itemQuantity).value - 1)) === 0) {
-                    CompleteAjaxCart.removeItemAnimation(item.parentNode.parentNode.parentNode.parentNode);
+                    GoCart.removeItemAnimation(item.parentNode.parentNode.parentNode.parentNode);
                 }
             });
         });
@@ -406,13 +408,13 @@ class CompleteAjaxCart {
     renderBlankCartDrawer() {
         this.cartDrawerSubTotal.parentNode.classList.add('is-invisible');
         this.clearCartDrawer();
-        this.cartDrawerContent.innerHTML = '<div class="ajax-cart__empty">Your Cart is currenty empty!</div>';
+        this.cartDrawerContent.innerHTML = '<div class="go-cart__empty">Your Cart is currenty empty!</div>';
     }
 
     renderBlankMiniCart() {
         this.cartMiniCartSubTotal.parentNode.classList.add('is-invisible');
         this.clearMiniCart();
-        this.cartMiniCartContent.innerHTML = '<div class="ajax-cart__empty">Your Cart is currenty empty!</div>';
+        this.cartMiniCartContent.innerHTML = '<div class="go-cart__empty">Your Cart is currenty empty!</div>';
     }
 
     clearCartDrawer() {
@@ -472,9 +474,9 @@ class CompleteAjaxCart {
     }
 
     setDrawerDirection() {
-        this.cartDrawer.classList.add(`ajax-cart__drawer--${this.drawerDirection}`);
+        this.cartDrawer.classList.add(`go-cart__drawer--${this.drawerDirection}`);
     }
 
 }
 
-export default CompleteAjaxCart;
+export default GoCart;
