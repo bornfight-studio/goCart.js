@@ -1,6 +1,6 @@
 /*!
  * 
- *   gocart.js v1.0.0
+ *   gocart v1.0.0
  *   
  * 
  *   Copyright (c) Bornfight (https://www.bornfight.com/)
