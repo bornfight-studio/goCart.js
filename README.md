@@ -39,7 +39,7 @@ If you are using SCSS you can find the SCSS file inside `src` folder: `src/lib/s
 You can also simply include it from `node_modules` like this:   
   
 ```
-@import "~gocart/src/lib/scss/go-cart";
+@import "~@bornfight/gocart/src/lib/scss/go-cart";
 ```  
   
 ### 4. Include `go-cart.liquid` file as section  
