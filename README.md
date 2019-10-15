@@ -21,13 +21,13 @@ Compiled code can be found in the `build` directory. The `src` directory contain
 ### 1. Install plugin  
   
 ```
-npm install gocart
+npm i @bornfight/gocart
 ``` 
 
 ### 2. Import goCart.js to your theme JS
 
 ```
-import GoCart from 'gocart';
+import GoCart from '@bornfight/gocart';
 ```
   
 ### 3. Import CSS/SCSS styles  
