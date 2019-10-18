@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="300" src="https://user-images.githubusercontent.com/11228203/67099323-0450df80-f1be-11e9-962a-e74fe958a337.png"/>
+</p>
+
 # goCart.js  
 
 A complete Shopify Ajax cart solution written in vanilla JS. This plugin includes Ajax cart drawer,  Ajax mini cart, add to cart modal, and error modal.  
