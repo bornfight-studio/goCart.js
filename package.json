@@ -1,6 +1,6 @@
 {
   "name": "@bornfight/gocart",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "goCart.js - Complete Shopify Ajax cart from Bornfight",
   "main": "build/index.js",
   "scripts": {
