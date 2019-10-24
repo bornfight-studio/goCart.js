@@ -2,6 +2,14 @@
   <img width="300" src="https://user-images.githubusercontent.com/11228203/67099323-0450df80-f1be-11e9-962a-e74fe958a337.png"/>
 </p>
 
+___
+
+[![npm version](https://badge.fury.io/js/%40bornfight%2Fgocart.svg)](https://badge.fury.io/js/%40bornfight%2Fgocart)
+![GitHub last commit](https://img.shields.io/github/last-commit/bornfight/gocart.js)
+![npm](https://img.shields.io/npm/dm/@bornfight/gocart)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/goCart.js/issues)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 # goCart.js  
 
 A complete Shopify Ajax cart solution written in vanilla JS. This plugin includes Ajax cart drawer,  Ajax mini cart, add to cart modal, and error modal.  
