@@ -14,6 +14,21 @@ ___
 
 A complete Shopify Ajax cart solution written in vanilla JS. This plugin includes Ajax cart drawer,  Ajax mini cart, add to cart modal, and error modal.  
 Plugin by [Bornfight](https://www.bornfight.com/) front-end team.
+
+## :video_game:  Demo
+
+- All products
+
+[https://ajax-cart-plugin-npm-test.myshopify.com/collections/all/](https://ajax-cart-plugin-npm-test.myshopify.com/collections/all/)
+
+- Product with one variant
+
+[https://ajax-cart-plugin-npm-test.myshopify.com/products/classic-leather-jacket](https://ajax-cart-plugin-npm-test.myshopify.com/products/classic-leather-jacket)
+
+- Product with multiple variants
+
+[https://ajax-cart-plugin-npm-test.myshopify.com/products/classic-varsity-top](https://ajax-cart-plugin-npm-test.myshopify.com/products/classic-varsity-top)
+
   
 ## :muscle: Features
 

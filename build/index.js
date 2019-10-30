@@ -1,6 +1,6 @@
 /*!
  * 
- *   @bornfight/gocart v1.0.4
+ *   @bornfight/gocart v1.0.5
  *   
  * 
  *   Copyright (c) Bornfight (https://www.bornfight.com/)
