@@ -34,6 +34,7 @@ class GoCart {
             cartMode: 'drawer',
             drawerDirection: 'right',
             displayModal: false,
+            moneyFormat: '${{amount}}',
         };
 
         this.defaults = Object.assign({}, defaults, options);
@@ -64,6 +65,7 @@ class GoCart {
         this.cartMode = this.defaults.cartMode;
         this.drawerDirection = this.defaults.drawerDirection;
         this.displayModal = this.defaults.displayModal;
+        this.moneyFormat = this.defaults.moneyFormat;
 
         this.init();
 
@@ -309,13 +311,13 @@ class GoCart {
                     </div>
                 </div>
             </div>
-            <div class="go-cart-item__price">${formatMoney(item.line_price)}</div>
+            <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
             <a class="go-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
         </div>
       `;
             this.cartDrawerContent.innerHTML += cartSingleProduct;
         });
-        this.cartDrawerSubTotal.innerHTML = formatMoney(cart.total_price);
+        this.cartDrawerSubTotal.innerHTML = formatMoney(cart.total_price, this.moneyFormat);
         this.cartDrawerSubTotal.parentNode.classList.remove('is-invisible');
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {
@@ -368,13 +370,13 @@ class GoCart {
                     </div>
                 </div>
             </div>
-            <div class="go-cart-item__price">${formatMoney(item.line_price)}</div>
+            <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
             <a class="go-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
         </div>
       `;
             this.cartMiniCartContent.innerHTML += cartSingleProduct;
         });
-        this.cartMiniCartSubTotal.innerHTML = formatMoney(cart.total_price);
+        this.cartMiniCartSubTotal.innerHTML = formatMoney(cart.total_price, this.moneyFormat);
         this.cartMiniCartSubTotal.parentNode.classList.remove('is-invisible');
         const removeFromCart = document.querySelectorAll(this.removeFromCart);
         removeFromCart.forEach((item) => {

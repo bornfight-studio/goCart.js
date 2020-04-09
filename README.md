@@ -165,8 +165,45 @@ const goCart = new GoCart();
     cartMode: 'drawer', //drawer or mini-cart  
     drawerDirection: 'right', //cart drawer from left or right
     displayModal: false, //display success modal when adding product to cart
+    moneyFormat: '${{amount}}', //template for money format when displaying money
 }
 ```
+
+## :moneybag: Currency options
+
+Price is converted to money with Shopify's `theme-currency` script. You can check it out here:
+
+[https://github.com/Shopify/theme-scripts/blob/master/packages/theme-currency/README.md](https://github.com/Shopify/theme-scripts/blob/master/packages/theme-currency/README.md) 
+
+Default currency is Dollar ($). If your shop uses different currency you can change the output of money inside goCart.js with `moneyFormat` option.
+
+Options accepts template for Shopify's `theme-currency` script. 
+
+```
+{
+    moneyFormat: '${{amount}}'
+}
+```
+
+This will print `$50.00`.
+
+Changing the template you can change how your money is displayed, so: 
+
+```
+{
+    moneyFormat: '€{{amount}}'
+}
+```
+
+will print `€50.00`, and 
+
+```
+{
+    moneyFormat: '{{amount}} HRK'
+}
+```
+
+will print `50.00 HRK`.
 
 ## :question: Drawer and mini cart modes
 
