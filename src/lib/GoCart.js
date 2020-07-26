@@ -34,6 +34,7 @@ class GoCart {
             cartMode: 'drawer',
             drawerDirection: 'right',
             displayModal: false,
+            // eslint-disable-next-line no-template-curly-in-string
             moneyFormat: '${{amount}}',
         };
 
