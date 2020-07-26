@@ -4,11 +4,179 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root">Demo Page</div>
+    <!--go cart modal fail-->
+    <div class="go-cart__modal go-cart__modal--fail js-go-cart-modal-fail">
+
+      <div class="go-cart-modal">
+
+        <!--go cart modal close-->
+        <div class="go-cart-modal__close js-go-cart-modal-fail-close">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <path d="M15.89 14.696l-4.734-4.734 4.717-4.717c.4-.4.37-1.085-.03-1.485s-1.085-.43-1.485-.03L9.641 8.447 4.97 3.776c-.4-.4-1.085-.37-1.485.03s-.43 1.085-.03 1.485l4.671 4.671-4.688 4.688c-.4.4-.37 1.085.03 1.485s1.085.43 1.485.03l4.688-4.687 4.734 4.734c.4.4 1.085.37 1.485-.03s.43-1.085.03-1.485z"></path>
+          </svg>
+
+        </div>
+        <!--end go cart modal close-->
+
+        <!--go cart modal content-->
+        <div class="go-cart-modal__content js-go-cart-modal-fail-content">
+          Something went wrong, please contact us!
+        </div>
+        <!--end go cart modal content-->
+
+      </div>
+
+    </div>
+    <!--end go cart modal fail-->
+
+    <!--go cart modal-->
+    <div class="go-cart__modal js-go-cart-modal">
+
+      <div class="go-cart-modal">
+
+        <!--go cart modal close-->
+        <div class="go-cart-modal__close js-go-cart-modal-close">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <path d="M15.89 14.696l-4.734-4.734 4.717-4.717c.4-.4.37-1.085-.03-1.485s-1.085-.43-1.485-.03L9.641 8.447 4.97 3.776c-.4-.4-1.085-.37-1.485.03s-.43 1.085-.03 1.485l4.671 4.671-4.688 4.688c-.4.4-.37 1.085.03 1.485s1.085.43 1.485.03l4.688-4.687 4.734 4.734c.4.4 1.085.37 1.485-.03s.43-1.085.03-1.485z"></path>
+          </svg>
+
+        </div>
+        <!--end go cart modal close-->
+
+        <!--go cart modal content-->
+        <div class="go-cart-modal__content js-go-cart-modal-content"></div>
+        <!--end go cart modal content-->
+
+        <!--go cart modal buttons-->
+        <div class="go-cart-modal__buttons">
+
+          <a class="go-cart__button js-go-cart-modal-close">
+            Continue shopping
+          </a>
+
+          <a href="/cart/" class="go-cart__button">
+            View cart
+          </a>
+
+        </div>
+        <!--end go cart modal buttons-->
+
+      </div>
+
+    </div>
+    <!--end go cart modal-->
+
+    <!--go cart drawer-->
+    <div class="go-cart__drawer js-go-cart-drawer">
+
+      <div class="go-cart-drawer">
+
+        <!--go cart drawer close-->
+        <div class="go-cart-drawer__header">
+
+          <div class="go-cart-drawer__close js-go-cart-drawer-close">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+              <path d="M15.89 14.696l-4.734-4.734 4.717-4.717c.4-.4.37-1.085-.03-1.485s-1.085-.43-1.485-.03L9.641 8.447 4.97 3.776c-.4-.4-1.085-.37-1.485.03s-.43 1.085-.03 1.485l4.671 4.671-4.688 4.688c-.4.4-.37 1.085.03 1.485s1.085.43 1.485.03l4.688-4.687 4.734 4.734c.4.4 1.085.37 1.485-.03s.43-1.085.03-1.485z"></path>
+            </svg>
+
+          </div>
+
+        </div>
+        <!--end go cart drawer close-->
+
+        <!--go cart drawer content-->
+        <div class="go-cart-drawer__content js-go-cart-drawer-content"></div>
+        <!--end go cart drawer content-->
+
+        <!--go cart drawer subtotal-->
+        <div class="go-cart-drawer__subtotal">
+          <span>Subtotal: </span>
+          <span class="go-cart-drawer__subtotal-price js-go-cart-drawer-subtotal"></span>
+        </div>
+        <!--end go cart drawer subtotal-->
+
+        <!--go cart drawer buttons-->
+        <div class="go-cart-drawer__footer js-go-cart-drawer-footer">
+
+          <a href="/checkout/" class="go-cart__button">
+            Proceed to checkout
+          </a>
+
+          <a href="/cart/" class="go-cart__button">
+            View cart
+          </a>
+
+        </div>
+        <!--end go cart drawer buttons-->
+
+      </div>
+
+    </div>
+    <!--end go cart drawer-->
+
+    <!--go cart overlay-->
+    <div class="go-cart__overlay js-go-cart-overlay">
+    </div>
+    <!--end go cart overlay-->
+
+
+    <!--cart button-->
+    <div class="go-cart__trigger js-go-cart-trigger">
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+        <path d="M18.936 5.564c-.144-.175-.35-.207-.55-.207h-.003L6.774 4.286c-.272 0-.417.089-.491.18-.079.096-.16.263-.094.585l2.016 5.705c.163.407.642.673 1.068.673h8.401c.433 0 .854-.285.941-.725l.484-4.571c.045-.221-.015-.388-.163-.567z"></path>
+      </svg>
+
+      <span class="js-go-cart-counter">{{- cart.item_count -}}</span>
+
+      <!--go cart mini cart-->
+      <div class="go-cart__mini-cart js-go-cart-mini-cart">
+
+        <div class="go-cart-mini-cart">
+
+          <!--go cart mini cart content-->
+          <div class="go-cart-mini-cart__content js-go-cart-mini-cart-content">
+          </div>
+          <!--end go cart mini cart content-->
+
+          <!--go cart mini cart subtotal-->
+          <div class="go-cart-mini-cart__subtotal">
+            <span>Subtotal: </span>
+            <span class="go-cart-mini-cart__subtotal-price js-go-cart-mini-cart-subtotal"></span>
+          </div>
+          <!--end go cart mini cart subtotal-->
+
+          <!--go cart mini cart buttons-->
+          <div class="go-cart-mini-cart__footer js-go-cart-mini-cart-footer">
+
+            <a href="/checkout/" class="go-cart__button">
+              Proceed to checkout
+            </a>
+
+            <a href="/cart/" class="go-cart__button">
+              View cart
+            </a>
+
+          </div>
+          <!--end go cart mini cart buttons-->
+
+        </div>
+
+      </div>
+      <!--end go cart mini cart-->
+
+    </div>
+    <!--end cart button-->
+
   </body>
 </html>
