@@ -56,6 +56,14 @@ npm i @bornfight/gocart
 ```
 import GoCart from '@bornfight/gocart';
 ```
+
+Or if you are not using any module bundler you can import goCart.js manually. Add `index.js` file from `build` folder (you can also rename it) to your theme `assets` folder.
+
+Then just include the goCart.js inside `theme.liquid` file, best right before closing of `</body>` tag.
+
+```
+{{ 'gocart.js' | asset_url | script_tag }}
+```
   
 ### 3. Import CSS/SCSS styles  
   
@@ -102,7 +110,7 @@ You will need to add identifier to that form which goCart.js uses to add product
   
 Inside that same form, find 'Add to cart' button, which user presses when he wants to add product to cart.   
   
-This will probably look similar to this:   
+This will probably look similar to this:
   
 ```  
 <button  
@@ -149,7 +157,7 @@ Locate the file that contains your cart button. Usually this will be inside `hea
 
 Inside your file just include goCart button as a snippet instead your old cart button like this: 
 
-`{% include "go-cart-button" %}` 
+`{%- include "go-cart-button" -%}` 
 
 There is no need to have two cart buttons so you can completely remove your old cart button.
   
@@ -157,6 +165,24 @@ There is no need to have two cart buttons so you can completely remove your old 
 
 ```
 const goCart = new GoCart();
+```
+
+or for manual installations, init inside `theme.liquid` file, right after including the goCart.js script from assets.
+
+```
+<script>
+  var goCart = new GoCart();
+</script>
+```
+
+You should have something like this:
+
+```
+{{ 'gocart.js' | asset_url | script_tag }}
+
+<script>
+  var goCart = new GoCart();
+</script>
 ```
   
 ## :airplane: Options
