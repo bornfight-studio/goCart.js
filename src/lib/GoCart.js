@@ -84,17 +84,18 @@ class GoCart {
             this.setDrawerDirection();
         }
 
-        this.addToCart.forEach((item) => {
-            item.addEventListener('click', (event) => {
+        document.addEventListener('click', (event) => {
+            if (event.target.matches(this.defaults.addToCart)) {
                 event.preventDefault();
+                let item = event.target;
                 let form = item.parentNode;
                 while ('form' !== form.tagName.toLowerCase()) {
                     form = form.parentNode;
                 }
                 const formID = form.getAttribute('id');
                 this.addItemToCart(formID);
-            });
-        });
+            }
+        }, false);
 
         this.cartTrigger.addEventListener('click', () => {
             if (this.isDrawerMode) {
