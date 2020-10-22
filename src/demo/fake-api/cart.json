@@ -1,0 +1,66 @@
+{
+  "token": "44afb49c3d810dbdb792d517d0114f68",
+  "note": null,
+  "attributes": {},
+  "original_total_price": 3000,
+  "total_price": 3000,
+  "total_discount": 0,
+  "total_weight": 0.0,
+  "item_count": 1,
+  "items": [
+    {
+      "id": 30325218672725,
+      "properties": null,
+      "quantity": 1,
+      "variant_id": 30325218672725,
+      "key": "30325218672725:c9a27fb452f3c899f2e74ec0ba1f1347",
+      "title": "Black Leather Bag",
+      "price": 3000,
+      "original_price": 3000,
+      "discounted_price": 3000,
+      "line_price": 3000,
+      "original_line_price": 3000,
+      "total_discount": 0,
+      "discounts": [],
+      "sku": null,
+      "grams": 0,
+      "vendor": "partners-demo",
+      "taxable": true,
+      "product_id": 4174132871253,
+      "product_has_only_default_variant": true,
+      "gift_card": false,
+      "final_price": 3000,
+      "final_line_price": 3000,
+      "url": "\/products\/black-leather-bag?variant=30325218672725",
+      "featured_image": {
+        "aspect_ratio": 1.499,
+        "alt": "Black Leather Bag",
+        "height": 617,
+        "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0250\/0263\/9445\/products\/black-bag-over-the-shoulder_925x_68e75bc9-ce9e-46bc-b3ab-5ebb17e56d95.jpg?v=1569936690",
+        "width": 925
+      },
+      "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/0250\/0263\/9445\/products\/black-bag-over-the-shoulder_925x_68e75bc9-ce9e-46bc-b3ab-5ebb17e56d95.jpg?v=1569936690",
+      "handle": "black-leather-bag",
+      "requires_shipping": true,
+      "product_type": "",
+      "product_title": "Black Leather Bag",
+      "product_description": "Womens black leather bag, with ample space. Can be worn over the shoulder, or remove straps to carry in your hand.",
+      "variant_title": null,
+      "variant_options": [
+        "Default Title"
+      ],
+      "options_with_values": [
+        {
+          "name": "Title",
+          "value": "Default Title"
+        }
+      ],
+      "line_level_discount_allocations": [],
+      "line_level_total_discount": 0
+    }
+  ],
+  "requires_shipping": true,
+  "currency": "HRK",
+  "items_subtotal_price": 3000,
+  "cart_level_discount_applications": []
+}
