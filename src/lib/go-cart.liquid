@@ -1,3 +1,6 @@
+{% capture drawer_item_template %}{% include 'go-cart-drawer-item' %}{% endcapture %}
+{% capture drawer_blank_template %}{% include 'go-cart-drawer-blank' %}{% endcapture %}
+{% capture modal_item_template %}{% include 'go-cart-modal-item' %}{% endcapture %}
 <!--go cart modal fail-->
 <div class="go-cart__modal go-cart__modal--fail js-go-cart-modal-fail">
 
@@ -40,7 +43,7 @@
         <!--end go cart modal close-->
 
         <!--go cart modal content-->
-        <div class="go-cart-modal__content js-go-cart-modal-content"></div>
+        <div class="go-cart-modal__content js-go-cart-modal-content" data-modal-item="{{ modal_item_template | escape }}"></div>
         <!--end go cart modal content-->
 
         <!--go cart modal buttons-->
@@ -63,7 +66,7 @@
 <!--end go cart modal-->
 
 <!--go cart drawer-->
-<div class="go-cart__drawer js-go-cart-drawer">
+<div class="go-cart__drawer js-go-cart-drawer" data-drawer-item="{{ drawer_item_template | escape }}" data-drawer-blank="{{ drawer_blank_template | escape }}">
 
     <div class="go-cart-drawer">
 

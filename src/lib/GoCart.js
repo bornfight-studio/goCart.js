@@ -1,7 +1,9 @@
 import './scss/go-cart.scss';
 import {formatMoney} from '@shopify/theme-currency/currency';
+import {getSizedImageUrl} from '@shopify/theme-images';
 import 'whatwg-fetch';
 import serialize from 'form-serialize';
+import Handlebars from 'handlebars';
 
 class GoCart {
 
@@ -40,6 +42,7 @@ class GoCart {
             labelCartIsEmpty: 'Your Cart is currently empty!',
             labelQuantity: 'Quantity:',
             labelRemove: 'Remove',
+            imageWidths: [20,100,180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024],
         };
 
         this.defaults = Object.assign({}, defaults, options);
@@ -75,6 +78,7 @@ class GoCart {
         this.labelCartIsEmpty = this.defaults.labelCartIsEmpty;
         this.labelQuantity = this.defaults.labelQuantity;
         this.labelRemove = this.defaults.labelRemove;
+        this.imageWidths = this.defaults.imageWidths;
 
         this.init();
 
@@ -289,49 +293,18 @@ class GoCart {
 
     renderCartModal(product) {
         this.clearCartModal();
-        let productVariant = product.variant_title;
-        if (productVariant === null) {
-            productVariant = '';
-        } else {
-            productVariant = `(${productVariant})`;
-        }
-        const cartSingleProduct = `
-        <div class="go-cart-modal-item">
-            <div class="go-cart-item__image" style="background-image: url(${product.image});"></div>
-            <div class="go-cart-item__info">
-                <a href="${product.url}" class="go-cart-item__title">${product.product_title} ${productVariant}</a> ${this.labelAddedToCart}
-            </div>
-        </div>
-      `;
-        this.cartModalContent.innerHTML += cartSingleProduct;
+        const itemForTemplate   = this.getItemForTemplate(product);
+        const template          = Handlebars.compile(this.cartModalContent.getAttribute('data-modal-item'));
+        const cartModalProduct  = template(itemForTemplate);
+        this.cartModalContent.innerHTML += cartModalProduct;
     }
 
     renderDrawerCart(cart) {
         this.clearCartDrawer();
         cart.items.forEach((item, index) => {
-            let itemVariant = item.variant_title;
-            if (itemVariant === null) {
-                itemVariant = '';
-            }
-            const cartSingleProduct = `
-        <div class="go-cart-item__single" data-line="${Number(index + 1)}">
-            <div class="go-cart-item__info-wrapper">
-                <div class="go-cart-item__image" style="background-image: url(${item.image});"></div>
-                <div class="go-cart-item__info">
-                    <a href="${item.url}" class="go-cart-item__title">${item.product_title}</a>
-                    <div class="go-cart-item__variant">${itemVariant}</div>
-                    <div class="go-cart-item__quantity">
-                        <span class="go-cart-item__quantity-label">${this.labelQuantity} </span>
-                        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
-                        <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="${item.quantity}" disabled>
-                        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
-                    </div>
-                </div>
-            </div>
-            <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
-            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${this.labelRemove}</a>
-        </div>
-      `;
+            const itemForTemplate   = this.getItemForTemplate(item, index);
+            const template          = Handlebars.compile(this.cartDrawer.getAttribute('data-drawer-item'));
+            const cartSingleProduct = template(itemForTemplate);
             this.cartDrawerContent.innerHTML += cartSingleProduct;
         });
         this.cartDrawerSubTotal.innerHTML = formatMoney(cart.total_price, this.moneyFormat);
@@ -368,30 +341,11 @@ class GoCart {
     renderMiniCart(cart) {
         this.clearMiniCart();
         cart.items.forEach((item, index) => {
-            let itemVariant = item.variant_title;
-            if (itemVariant === null) {
-                itemVariant = '';
-            }
-            const cartSingleProduct = `
-        <div class="go-cart-item__single" data-line="${Number(index + 1)}">
-            <div class="go-cart-item__info-wrapper">
-                <div class="go-cart-item__image" style="background-image: url(${item.image});"></div>
-                <div class="go-cart-item__info">
-                    <a href="${item.url}" class="go-cart-item__title">${item.product_title}</a>
-                    <div class="go-cart-item__variant">${itemVariant}</div>
-                    <div class="go-cart-item__quantity">
-                        <span class="go-cart-item__quantity-label">${this.labelQuantity} </span>
-                        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
-                        <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="${item.quantity}" disabled>
-                        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
-                    </div>
-                </div>
-            </div>
-            <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
-            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${this.labelRemove}</a>
-        </div>
-      `;
-            this.cartMiniCartContent.innerHTML += cartSingleProduct;
+            const itemForTemplate = this.getItemForTemplate(item, index);
+            const template        = Handlebars.compile(this.cartMiniCart.getAttribute('data-mini-item'));
+            const cartMiniProduct = template(itemForTemplate);
+
+            this.cartMiniCartContent.innerHTML += cartMiniProduct;
         });
         this.cartMiniCartSubTotal.innerHTML = formatMoney(cart.total_price, this.moneyFormat);
         this.cartMiniCartSubTotal.parentNode.classList.remove('is-invisible');
@@ -427,13 +381,19 @@ class GoCart {
     renderBlankCartDrawer() {
         this.cartDrawerSubTotal.parentNode.classList.add('is-invisible');
         this.clearCartDrawer();
-        this.cartDrawerContent.innerHTML = `<div class="go-cart__empty">${this.labelCartIsEmpty}</div>`;
+        const template        = Handlebars.compile(this.cartDrawer.getAttribute('data-drawer-blank'));
+        const blankCartDrawer = template({labelCartIsEmpty: this.labelCartIsEmpty});
+
+        this.cartDrawerContent.innerHTML = blankCartDrawer;
     }
 
     renderBlankMiniCart() {
         this.cartMiniCartSubTotal.parentNode.classList.add('is-invisible');
         this.clearMiniCart();
-        this.cartMiniCartContent.innerHTML = `<div class="go-cart__empty">${this.labelCartIsEmpty}</div>`;
+        const template      = Handlebars.compile(this.cartMiniCart.getAttribute('data-mini-blank'));
+        const blankMiniCart = template({labelCartIsEmpty: this.labelCartIsEmpty});
+
+        this.cartMiniCartContent.innerHTML = blankMiniCart;
     }
 
     clearCartDrawer() {
@@ -494,6 +454,27 @@ class GoCart {
 
     setDrawerDirection() {
         this.cartDrawer.classList.add(`go-cart__drawer--${this.drawerDirection}`);
+    }
+
+    getItemForTemplate(item, index = false) {
+        const imageUrl    = item.image;
+        let imageWidths   = {};
+        this.imageWidths.forEach((item, index) => {
+            imageWidths[item] = getSizedImageUrl(imageUrl, item+'x');
+        });
+        const itemForTemplate = {
+            labelAddedToCart: this.labelAddedToCart,
+            lineIndex0:       index === 0 || index > 0 ? index : null,
+            lineIndex:        index === 0 || index > 0 ? index + 1 : null,
+            variantTitle:     item.variant_title ? item.variant_title : null,
+            singlePrice:      formatMoney(item.price, this.moneyFormat),
+            totalPrice:       formatMoney(item.line_price, this.moneyFormat),
+            removeClass:      this.removeFromCartNoDot,
+            rImages:          imageWidths,
+            rImageSrcAttr:    imageUrl.replace(/\.(jpg|jpeg|gif|png|bmp|bitmap|tiff|tif)(\?v=\d+)?$/i, '_{width}x$&'),
+            rImageWidths:     '['+this.imageWidths.join(',')+']',
+        };
+        return Object.assign(item, itemForTemplate);
     }
 
 }

@@ -161,7 +161,68 @@ Inside your file just include goCart button as a snippet instead your old cart b
 
 There is no need to have two cart buttons so you can completely remove your old cart button.
   
-### 7. Init the plugin  
+### 7. Copy cart templates and customize them
+
+Copy these template files from `src/lib` into the `snippets` folder of your Shopify theme:
+
+- `go-cart-drawer-blank.liquid`
+- `go-cart-drawer-item.liquid`
+- `go-cart-mini-blank.liquid`
+- `go-cart-mini-item.liquid`
+- `go-cart-modal-item.liquid`
+
+These files use [handlebars](https://handlebarsjs.com/) as a templating engine. The templates may be edited to suit your needs.
+
+Each item template (`go-cart-drawer-item.liquid`, `go-cart-mini-item.liquid`, and `go-cart-modal-item.liquid`) rely on [the Shopify Ajax API](https://shopify.dev/docs/themes/ajax-api/reference/cart), specifically [the `GET /cart.js` endpoint](https://shopify.dev/docs/themes/ajax-api/reference/cart#json-of-a-cart). Each item template in handlebars is scoped to a Shopify line item along with several added properties. You may use properties available to Shopify line items such as `{{vendor}}`, `{{featured_image.url}}`, or `{{featured_image.aspect_ratio}}`.
+
+Some added templating properties include:
+
+- `labelAddedToCart`: The "was added to cart" label
+- `lineIndex0`:       The item's position in the cart, starting from 0
+- `lineIndex`:        The item's position in the cart, starting from 1
+- `variantTitle`:     The product's variant title (e.g., "red"), if it exists
+- `singlePrice`:      The item's formatted price with currency (e.g., £24.99)
+- `totalPrice`:       The item's formatted total price with currency, taking quantity into account
+- `rImages`:          A list of the item's responsive image widths and URLs for use with [lazysizes](https://github.com/aFarkas/lazysizes)
+- `rImageSrcAttr`:    The item's image URL with replaceable `_{width}x` suffix for use with lazysizes
+- `rImageWidths`:     A list of common responsive image widths for use with lazysizes (typically this is useful as a value for `data-widths`)
+
+For best results, avoid modifying classes starting with `js-go-cart-` or `data-` attributes within the template files.
+
+An example of a modified drawer item template (`go-cart-drawer-item.liquid`) which uses a responsive lazy loaded image and lazysizes:
+
+```html
+{% raw %}
+<div class="go-cart-item__single" data-line="{{lineIndex}}">
+  <div class="go-cart-item__info-wrapper">
+    <div class="go-cart-item__image">
+      <img class="lazyload"
+        src="{{#with rImages}}{{20}}{{/with}}"
+        data-src="{{rImageSrcAttr}}"
+        data-widths="{{rImageWidths}}"
+        data-aspectratio="{{featured_image.aspect_ratio}}"
+        data-sizes="auto"
+        tabindex="-1"
+        alt="" />
+    </div>
+    <div class="go-cart-item__info">
+      <a href="{{url}}" class="go-cart-item__title">{{product_title}}</a>
+      <div class="go-cart-item__variant">{{variantTitle}}</div>
+      <div class="go-cart-item__quantity">
+        <span class="go-cart-item__quantity-label">{% endraw %}{{ 'cart.label.quantity' | t }}{% raw %} </span>
+        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
+        <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="{{quantity}}" disabled>
+        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
+      </div>
+    </div>
+  </div>
+  <div class="go-cart-item__price">{{totalPrice}}</div>
+  <a class="go-cart-item__remove {{removeClass}}">{% endraw %}{{ 'cart.general.remove' | t }}{% raw %}</a>
+</div>
+{% endraw %}
+```
+
+### 8. Init the plugin  
 
 ```
 const goCart = new GoCart();
@@ -192,6 +253,7 @@ You should have something like this:
     drawerDirection: 'right', //cart drawer from left or right
     displayModal: false, //display success modal when adding product to cart
     moneyFormat: '${{amount}}', //template for money format when displaying money
+    imageWidths: [20,100,180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2592,2808,3024], //array of responsive image size URLs to generate for lazysizes
 }
 ```
 

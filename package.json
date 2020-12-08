@@ -109,7 +109,9 @@
   },
   "dependencies": {
     "@shopify/theme-currency": "^3.1.0",
+    "@shopify/theme-images": "^4.0.2",
     "form-serialize": "^0.7.2",
+    "handlebars": "^4.7.6",
     "node-sass": "^4.14.1",
     "whatwg-fetch": "^3.4.1"
   },
