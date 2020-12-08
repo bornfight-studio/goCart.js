@@ -1,3 +1,5 @@
+{% capture cart_item_template %}{% include 'go-cart-mini-item' %}{% endcapture %}
+{% capture cart_blank_template %}{% include 'go-cart-mini-blank' %}{% endcapture %}
 <!--cart button-->
 <div class="go-cart__trigger js-go-cart-trigger">
 
@@ -9,7 +11,7 @@
     <span class="js-go-cart-counter">{{- cart.item_count -}}</span>
 
     <!--go cart mini cart-->
-    <div class="go-cart__mini-cart js-go-cart-mini-cart">
+    <div class="go-cart__mini-cart js-go-cart-mini-cart" data-mini-item="{{ cart_item_template | escape }}" data-mini-blank="">
 
         <div class="go-cart-mini-cart">
 
