@@ -1,14 +1,14 @@
 import "./index.css";
 
-class MyLibrary {
-  constructor() {
-    console.log("Library constructor loaded");
-  }
+class MarioCart {
+    constructor() {
+        console.log("Library constructor loaded");
+    }
 
-  myMethod = (): boolean => {
-    console.log("Library method fired");
-    return true;
-  };
+    myMethod = (): boolean => {
+        console.log("Library method fired");
+        return true;
+    };
 }
 
-export default MyLibrary;
+export default MarioCart;

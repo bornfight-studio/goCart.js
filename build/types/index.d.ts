@@ -1,6 +1,6 @@
 import "./index.css";
-declare class MyLibrary {
+declare class MarioCart {
     constructor();
     myMethod: () => boolean;
 }
-export default MyLibrary;
+export default MarioCart;

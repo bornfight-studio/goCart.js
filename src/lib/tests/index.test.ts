@@ -1,5 +1,5 @@
-import MyLibrary from '../index';
+import MyLibrary from "../index";
 
-it('Runs without crashing', () => {
-  new MyLibrary();
+it("Runs without crashing", () => {
+    new MyLibrary();
 });
