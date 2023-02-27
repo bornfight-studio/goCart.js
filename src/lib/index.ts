@@ -1,14 +1,4 @@
-import "./index.css";
+import MarioCart from "./components/MarioCart";
 
-class MarioCart {
-    constructor() {
-        console.log("Library constructor loaded");
-    }
-
-    myMethod = (): boolean => {
-        console.log("Library method fired");
-        return true;
-    };
-}
-
+export { MarioCart };
 export default MarioCart;

@@ -1,9 +1,9 @@
-import MyLibrary from "../lib";
+import MarioCart from "../lib";
 
-const myLibraryInstance = new MyLibrary();
+const marioCartInstance = new MarioCart();
 
 document.querySelector("body").innerHTML = `<h1>Hello World!</h1>`;
 
-console.log("myLibraryInstance", myLibraryInstance);
+console.log("marioCartInstance", marioCartInstance);
 
-myLibraryInstance.myMethod();
+marioCartInstance.myMethod();

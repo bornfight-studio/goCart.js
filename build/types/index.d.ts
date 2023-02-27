@@ -1,6 +1,3 @@
-import "./index.css";
-declare class MarioCart {
-    constructor();
-    myMethod: () => boolean;
-}
+import MarioCart from "./components/MarioCart";
+export { MarioCart };
 export default MarioCart;

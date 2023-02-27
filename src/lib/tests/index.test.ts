@@ -1,5 +1,5 @@
-import MyLibrary from "../index";
+import MarioCart from "../index";
 
 it("Runs without crashing", () => {
-    new MyLibrary();
+    new MarioCart();
 });
