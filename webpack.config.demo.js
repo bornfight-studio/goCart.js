@@ -28,7 +28,29 @@ module.exports = {
             },
             {
                 test: /\.(sa|sc|c)ss$/,
-                use: [MiniCssExtractPlugin.loader, { loader: "css-loader", options: { sourceMap: true } }],
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [["postcss-preset-env"]],
+                            },
+                        },
+                    },
+                ],
             },
         ],
     },

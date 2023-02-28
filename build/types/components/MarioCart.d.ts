@@ -1,4 +1,4 @@
-import "./scss/mario-cart.css";
+import "./scss/mario-cart.scss";
 declare class MarioCart {
     constructor();
     myMethod: () => boolean;
