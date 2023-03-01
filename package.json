@@ -22,12 +22,12 @@
   "types": "build/types/index.d.ts",
   "scripts": {
     "build": "webpack && tsc",
-    "watch": "webpack --watch && tsc",
     "coverage": "npm run test -- --coverage",
     "format": "prettier --write 'src/**/*.{scss,js,ts}'",
     "prepare": "husky install",
     "test": "jest --silent",
-    "trypublish": "npm publish || true"
+    "trypublish": "npm publish || true",
+    "watch": "webpack --watch && tsc"
   },
   "browserslist": [
     "defaults"
