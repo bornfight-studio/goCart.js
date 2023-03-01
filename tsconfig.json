@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "outDir": "build/types",
+    "outDir": "dist/types",
     "module": "esnext",
     "target": "es5",
     "allowJs": true,
@@ -19,6 +19,6 @@
     "src"
   ],
   "exclude": [
-    "src/**/tests"
+    "tests"
   ]
 }

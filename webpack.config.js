@@ -23,7 +23,7 @@ module.exports = {
     entry: "./src/index.ts",
     output: {
         filename: "index.js",
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, "dist"),
         library: "MarioCart",
         libraryTarget: "umd",
         clean: true,
@@ -71,7 +71,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "css/index.css",
+            filename: "style.css",
         }),
         new webpack.BannerPlugin(banner),
     ],

@@ -1,4 +1,4 @@
-import "./scss/mario-cart.scss";
+import "./mario-cart.scss";
 
 class MarioCart {
     constructor() {

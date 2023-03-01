@@ -1,5 +1,5 @@
 package-lock.json
-build/
+dist/
 node_modules/
 .husky/
 .idea/

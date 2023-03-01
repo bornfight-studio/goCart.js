@@ -18,8 +18,8 @@
   },
   "license": "MIT",
   "author": "Bornfight Studio <hello@bornfight.studio> (https://github.com/bornfight)",
-  "main": "build/index.js",
-  "types": "build/types/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "webpack && tsc",
     "coverage": "npm run test -- --coverage",
