@@ -16,9 +16,9 @@
     "moduleResolution": "node"
   },
   "include": [
-    "src/lib"
+    "src"
   ],
   "exclude": [
-    "src/lib/**/tests"
+    "src/**/tests"
   ]
 }

@@ -1,21 +1,37 @@
+const path = require("path");
+const webpack = require("webpack");
+const TerserPlugin = require("terser-webpack-plugin");
+const getPackageJson = require("./scripts/getPackageJson");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+const { version, name, license, repository, author } = getPackageJson("version", "name", "license", "repository", "author");
+
+const banner = `
+  ${name} v${version}
+  ${repository.url}
+
+  Copyright (c) ${author.replace(/ *<[^)]*> */g, " ")} and project contributors.
+
+  This source code is licensed under the ${license} license found in the
+  LICENSE file in the root directory of this source tree.
+`;
 
 module.exports = {
-    mode: "development",
-    devtool: "cheap-module-source-map",
-    entry: "./src/demo/index.ts",
+    mode: "production",
+    watch: true,
+    devtool: "source-map",
+    entry: "./src/index.ts",
     output: {
         filename: "index.js",
+        path: path.resolve(__dirname, "build"),
+        library: "MarioCart",
+        libraryTarget: "umd",
+        clean: true,
     },
     optimization: {
-        minimize: false,
-    },
-    devServer: {
-        open: true,
-        hot: true,
-        host: "localhost",
-        port: 9000,
+        minimize: true,
+        minimizer: [new TerserPlugin({ extractComments: false }), new CssMinimizerPlugin()],
     },
     module: {
         rules: [
@@ -29,7 +45,7 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    "style-loader",
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
                         options: {
@@ -58,7 +74,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "css/index.css",
         }),
-        new HtmlWebpackPlugin(),
+        new webpack.BannerPlugin(banner),
     ],
     resolve: {
         extensions: [".ts", ".js", ".json"],

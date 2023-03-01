@@ -22,11 +22,10 @@
   "types": "build/types/index.d.ts",
   "scripts": {
     "build": "webpack && tsc",
-    "build:demo": "webpack --config webpack.config.demo.js",
+    "watch": "webpack --config webpack.config.watch.js && tsc",
     "coverage": "npm run test -- --coverage",
     "format": "prettier --write 'src/**/*.{scss,js,ts}'",
     "prepare": "husky install",
-    "start": "webpack serve --config webpack.config.demo.js",
     "test": "jest --silent",
     "trypublish": "npm publish || true"
   },
