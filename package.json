@@ -1,7 +1,7 @@
 {
   "name": "@bornfight/gocart",
-  "version": "1.0.9",
-  "description": "goCart.js - Complete Shopify Ajax cart from Bornfight",
+  "version": "1.0.10",
+  "description": "goCart.js - Complete Shopify Ajax cart from Bornfight Studio",
   "keywords": [
     "shopify",
     "ajax",
@@ -17,7 +17,7 @@
     "url": ""
   },
   "license": "MIT",
-  "author": "Bornfight <hello@bornfight.com> (https://www.bornfight.com/)",
+  "author": "BORNFIGHT STUDIO® <hello@bornfight.studio> (https://www.bornfight.studio/)",
   "main": "build/index.js",
   "scripts": {
     "build": "node scripts/build.js",
@@ -173,5 +173,9 @@
     "webpack-dev-server": "3.8.1",
     "webpack-manifest-plugin": "2.1.2",
     "workbox-webpack-plugin": "4.3.1"
+  },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
   }
 }

@@ -5,15 +5,15 @@
 ___
 
 [![npm version](https://badge.fury.io/js/%40bornfight%2Fgocart.svg)](https://badge.fury.io/js/%40bornfight%2Fgocart)
-![GitHub last commit](https://img.shields.io/github/last-commit/bornfight/gocart.js)
+![GitHub last commit](https://img.shields.io/github/last-commit/bornfight-studio/gocart.js)
 ![npm](https://img.shields.io/npm/dm/@bornfight/gocart)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight/goCart.js/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/bornfight-studio/goCart.js/issues)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 # goCart.js  
 
 A complete Shopify Ajax cart solution written in vanilla JS. This plugin includes Ajax cart drawer,  Ajax mini cart, add to cart modal, and error modal.  
-Plugin by [Bornfight](https://www.bornfight.com/) front-end team.
+Plugin by [Bornfight Studio](https://www.bornfight.studio/) front-end team.
 
 ## :video_game:  Demo
 
